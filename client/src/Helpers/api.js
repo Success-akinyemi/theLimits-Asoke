@@ -34,3 +34,12 @@ export async function checkoutPayment(formData){
         console.log(error)
     }
 }
+
+export async function verifyPayment({}){
+    try {
+        const res = await axios.post(`/api/paystack/verifyPayment`, {verifyPayment})
+        return res
+    } catch (error) {
+        console.log(error)
+    }
+}

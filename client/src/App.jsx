@@ -18,6 +18,8 @@ import Customers from './Admin/Page/Customers/Customers'
 import NewProduct from './Admin/Page/NewProduct/NewProduct'
 import AdminSettings from './Admin/Page/AdminSettings/AdminSettings'
 import Category from './Admin/Page/Category/Category'
+import Orders from './Pages/Orders/Orders'
+import VerifyingPayment from './Pages/VerifyingPayment/VerifyingPayment'
 
 function App() {
   return (
@@ -40,6 +42,12 @@ function App() {
           <Route element={<PrivateRoute />}>
             <Route path='/mycart' element={<Cart />} />
           </Route>
+          <Route element={<PrivateRoute />}>
+            <Route path='/myorder' element={<Orders />} />
+          </Route>
+
+          <Route path='/VerifyingPayment' element={<VerifyingPayment />} />
+          
           
           //Admin Routes
           <Route element={<AdminRoute />} >

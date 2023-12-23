@@ -17,3 +17,7 @@
     justify-content: center;
     align-items: center;
 }
+
+.mobileNav .moblieNavLink.active{
+    color: purple;
+}

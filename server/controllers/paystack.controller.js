@@ -38,6 +38,66 @@ export async function checkoutPayment(req, res){
     }
 }
 
-export async function vertifyPayment(){
-    
+export async function verifyPaymentWebhook(req, res){
+  const { event, data } = req.body;
+    if(event === 'charge.success'){
+      const refrence = data.reference || ''
+      const statusMsg = data.status || ''
+
+      if(statusMsg === 'success'){
+        const order = await OrderModel.findOne({ transactionRef: refrence })
+
+        order.isVerified = true
+        await order.save()
+        console.log('ORDER VERIFIED')
+      } else {
+        console.log('DONATION STATUS NOT SUCCESS>>>', statusMsg)
+      }
+
+    } else if (event === 'charge.failed') {
+      console.log('Transaction Failure');
+    }
+
+    res.end()
+}
+
+export async function verifyPayment(req, res){
+  const { reference } = req.body
+
+  try {
+    const verifyUrl = `https://api.paystack.co/transaction/verify/${reference}`;
+    console.log('urlll>>', verifyUrl);
+
+    const options = {
+      headers: {
+        Authorization: `Bearer ${process.env.PAYSTACK_TEST_SK}`,
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      },
+    };
+
+    const response = await axios.get(verifyUrl, options);
+    const verificationData = response.data;
+    const { status } = verificationData.data;
+
+    if(status === 'success'){
+      const order = await OrderModel.findOne({ transactionRef: reference })
+
+      if(!order){
+        return res.status(400).json({ success: false, data: 'INVALID PAYMENT'})
+      }
+
+      order.payment = true
+      await order.save()
+      console.log('ORDER', order)
+
+      return  res.status(200).json({ success: true, data: 'Payment succesful'});
+    } else{
+      return res.status(400).json({ success: false, data: 'TRANSACTION NOT SUCCESSFUL'})
+    }
+
+  } catch (error) {
+    console.log('ERROR VERIFYING DONATION', error);
+    res.status(500).json({ success: false, data: 'Unable To get Donation' });
+  }
 }

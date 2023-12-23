@@ -39,7 +39,7 @@ function Navbar() {
             {
                 user ? (
                     <div className='username'>
-                        <p className='p-1'>Hi, <span>{user.username}</span></p>
+                        <p className='p-1'>Hi, <span>{user?.username}</span></p>
                         <p className='p-2'>Lets go shopping</p>
                     </div>
                 ) : (
@@ -73,7 +73,7 @@ function Navbar() {
                 </Link>
             </div>
             {
-                user.isAdmin && (
+                user?.isAdmin && (
                     <Link className='link' to='/adminLogin' >Admin</Link>
                 )
             }
