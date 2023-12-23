@@ -26,6 +26,7 @@ export async function signup(req, res){
 
 export async function signin(req, res){
     const { email, password } = req.body
+    console.log('WORKING')
     try {
         if(!email || !password){
             return res.status(400).json({ success: false, data: 'Fill all neccessary fields'})
