@@ -22,3 +22,15 @@ export async function addProduct(formData){
         console.log(error)
     }
 }
+
+export async function checkoutPayment(formData){
+    try {
+        const res = await axios.post('/api/paystack/checkoutPayment', formData)
+        const authorizationUrl = res.data.authorizationUrl;
+        console.log('url', authorizationUrl)
+        window.location.href = authorizationUrl
+    } catch (error) {
+        toast.error('Failed to upload Category')
+        console.log(error)
+    }
+}

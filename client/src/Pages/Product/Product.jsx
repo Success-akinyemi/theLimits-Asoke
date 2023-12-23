@@ -28,7 +28,7 @@ function Product() {
 
     const handleQuantity = (type) => {
         if(type === 'dec'){
-            quantity > 1 && setProductQuantity(productquantity - 1)
+            productquantity > 1 && setProductQuantity(productquantity - 1)
         } else{
             setProductQuantity(productquantity + 1)
         }
@@ -88,6 +88,7 @@ function Product() {
         dispatch(
             addProduct({ ...data, price: data?.isDiscountAllowed ? data?.discountPrice : data?.price,  quantity: productquantity, color: productColor, size: productSize })
         )
+        toast.success('Item addded to cart')
     }
 
     

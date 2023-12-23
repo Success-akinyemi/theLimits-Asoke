@@ -146,6 +146,7 @@ function AccountProfile() {
                 <input onChange={handleChange} type="password" id='password' placeholder='Password' className='bg-slate-200 rounded-lg p-3 outline-none' />
                 <input onChange={handleChange} defaultValue={user.firstname} type="text" id='firstname' placeholder='First Name' className='bg-slate-200 rounded-lg p-3 outline-none' />
                 <input onChange={handleChange} defaultValue={user.lastname} type="text" id='lastname' placeholder='Last Name' className='bg-slate-200 rounded-lg p-3 outline-none' />
+                <input onChange={handleChange} defaultValue={user.country} type="text" id='country' placeholder='Country' className='bg-slate-200 rounded-lg p-3 outline-none' />
                 <input onChange={handleChange} defaultValue={user.state} type="text" id='state' placeholder='State' className='bg-slate-200 rounded-lg p-3 outline-none' />
                 <input onChange={handleChange} defaultValue={user.lga} type="text" id='lga' placeholder='Local Government Area' className='bg-slate-200 rounded-lg p-3 outline-none' />
                 <input onChange={handleChange} defaultValue={user.houseaddress} type="text" id='houseaddress' placeholder='House Address' className='bg-slate-200 rounded-lg p-3 outline-none' />

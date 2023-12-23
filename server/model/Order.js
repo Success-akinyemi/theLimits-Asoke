@@ -4,19 +4,16 @@ const OrderSchema = new mongoose.Schema({
     userId: {
         type: String
     },
-    products: [
-        {
-            productId: {
-                type: String
-            },
-            quantity: {
-                type: Number,
-                default: 1
-            }
-        }
-    ],
-    amount: {
+    products: {
+        type: Array,
+        required: true
+    },
+    total: {
         type: Number,
+        required: true
+    },
+    transactionRef: {
+        type: String,
         required: true
     },
     firstname: {
@@ -24,6 +21,10 @@ const OrderSchema = new mongoose.Schema({
         required: true
     },
     lastname: {
+        type: String,
+        required: true
+    },
+    email: {
         type: String,
         required: true
     },

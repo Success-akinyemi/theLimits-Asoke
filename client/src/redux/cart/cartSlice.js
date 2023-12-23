@@ -12,10 +12,29 @@ const cartSlice = createSlice({
             state.quantity += 1;
             state.products.push(action.payload);
             state.total += action.payload.price * action.payload.quantity;
+        },
+        updateQuantity: (state, action) => {
+            const { productId, quantity } = action.payload;
+            const productIndex = state.products.findIndex((item) => item._id === productId);
+      
+            if (productIndex !== -1) {
+              // Create a new object to avoid mutating the existing state
+              const updatedProduct = { ...state.products[productIndex], quantity };
+              
+              // Replace the old product with the updated product in the products array
+              state.products = [
+                ...state.products.slice(0, productIndex),
+                updatedProduct,
+                ...state.products.slice(productIndex + 1)
+              ];
+      
+              // Recalculate the total based on the updated products
+              state.total = state.products.reduce((acc, product) => acc + product.price * product.quantity, 0);
+            }
         }
     }
 })
 
-export const { addProduct } = cartSlice.actions
+export const { addProduct, updateQuantity } = cartSlice.actions
 
 export default cartSlice.reducer

@@ -8,7 +8,7 @@ import CartRoutes from './routes/cart.routes.js'
 import OrderRoutes from './routes/order.routes.js'
 import adminRoutes from './routes/admin.routes.js'
 import generalRoutes from './routes/general.routes.js'
-
+import paystackRoutes from './routes/paystack.routes.js'
 
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
@@ -42,6 +42,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api', generalRoutes)
+app.use('/api/paystack', paystackRoutes)
 app.use('/api/user', userRoutes)
 app.use('/api/product', productRoutes)
 app.use('/api/cart', CartRoutes)

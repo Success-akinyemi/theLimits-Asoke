@@ -20,7 +20,7 @@ function ProductStore({storeData, options, isLoadingProduct}) {
                     <Spinner />
                 ) : 
                 (
-                    storeData.map((data, idx) => (
+                    storeData?.map((data, idx) => (
                         <ProductItem data={data} key={idx} />
                     ))
                 )
