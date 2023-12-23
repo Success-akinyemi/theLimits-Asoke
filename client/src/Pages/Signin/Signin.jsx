@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { signInStart, signInSuccess, signInFailure } from '../../redux/user/userslice.js'
 import { useDispatch, useSelector } from 'react-redux'
 import OAuth from '../../Component/OAuth.jsx'
+import { apiUrl } from '../../Utils/api.js'
 
 function Signin() {
   const navigate = useNavigate()
@@ -19,7 +20,7 @@ function Signin() {
     e.preventDefault()
     try {
         dispatch(signInStart());
-        const res = await fetch('/api/auth/signin', {
+        const res = await fetch(apiUrl('/api/auth/signin'), {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
