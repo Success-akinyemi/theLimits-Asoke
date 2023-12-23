@@ -27,7 +27,7 @@ function Signin() {
           credentials: 'include',
           body: JSON.stringify(formData)
         });
-        const data = await res.json();
+        const data = await res?.json();
         if(data?.success){
           dispatch(signInSuccess(data))
           navigate('/')
