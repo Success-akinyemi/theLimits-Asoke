@@ -1,5 +1,5 @@
 import axios from 'axios'
-import OrderModel from '../model/Order';
+import OrderModel from '../model/Order.js';
 
 export async function checkoutPayment(req, res){
     try {
