@@ -2,6 +2,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import './Signup.css'
 import { useState } from 'react';
 import OAuth from '../../Component/OAuth';
+import { apiUrl } from '../../Utils/api';
 
 function Signup() {
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ function Signup() {
     try {
       setLoading(true)
       setError('')
-        const res = await fetch('/api/auth/signup', {
+        const res = await fetch(apiUrl('/api/auth/signup'), {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

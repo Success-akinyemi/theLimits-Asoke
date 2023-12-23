@@ -6,3 +6,17 @@
     align-items: center;
     position: relative;
 }
+
+.verifyPayment .content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.verifyPayment .content p{
+    margin-top: 3rem;
+    font-size: 20px;
+}

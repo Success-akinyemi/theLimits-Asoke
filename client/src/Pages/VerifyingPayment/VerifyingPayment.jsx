@@ -33,8 +33,10 @@ function VerifyingPayment() {
 
   return (
     <div className='bg verifyPayment'>
-        <Spinner />
-        <p>Please Wait...</p>
+        <div className="content">
+            <Spinner />
+            <p>Please Wait...</p>
+        </div>
     </div>
   )
 }

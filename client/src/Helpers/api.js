@@ -1,6 +1,8 @@
 import axios from 'axios'
 import toast from 'react-hot-toast'
 
+axios.defaults.baseURL = import.meta.env.VITE_SERVER_API
+
 export async function addCategory(formData){
     try {
         console.log(formData)

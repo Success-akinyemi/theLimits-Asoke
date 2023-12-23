@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
 
+axios.defaults.baseURL = import.meta.env.VITE_SERVER_API
+
 export function useFetchCategory(query) {
     const [cat, setCat] = useState({ isLoadingCat: true, catData: null, catStatus: null, catError: null})
 
