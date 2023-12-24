@@ -40,7 +40,7 @@ function Cart() {
     const handleCheckout = async () => {
         const email = user.email
         const amount = cart.total
-        if(!user.country || user.state || user.lga || user.houseaddress || user.phonenumber){
+        if(!user.country || !user.state || !user.lga || !user.houseaddress || !user.phonenumber){
             toast.error('Add Shipping Information')
             return;
         }
@@ -158,7 +158,7 @@ function Cart() {
                     <div className="total">
                         <h1>Shipping Information</h1>
                         {
-                            !user.country || user.state || user.lga || user.houseaddress || user.phonenumber ? (
+                            !user.country || !user.state || !user.lga || !user.houseaddress || !user.phonenumber ? (
                                 <div className="updateInfo">
                                     <h2>Add Shipping Information</h2>
                                     <Link to='/profile' className='link updateBtn'>UPADATE HERE</Link>
