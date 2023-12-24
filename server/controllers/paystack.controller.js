@@ -3,7 +3,7 @@ import OrderModel from '../model/Order.js';
 
 export async function checkoutPayment(req, res){
     try {
-        console.log('REQ', req)
+        console.log('REQ', req.body)
         const fullAmount = req.body.total * 100
         const email = req.body.email
     

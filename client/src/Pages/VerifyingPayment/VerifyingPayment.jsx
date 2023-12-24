@@ -26,6 +26,8 @@ function VerifyingPayment() {
                 } catch (error) {
                     console.log(error)
                 }
+            } else{
+                console.log('PARAMS', queryParams)
             }
         }
         fetchData()
