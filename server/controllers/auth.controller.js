@@ -44,7 +44,7 @@ export async function signin(req, res){
         const token = jwt.sign({ id: userExist._id, isAdmin: userExist.isAdmin }, process.env.JWT_SECRET)
         const expiryDate = new Date(Date.now() + 4 * 60 * 60 * 1000)
         const { password: hashedPassword, adminPassword, ...userData } = userExist._doc
-        res.cookie('accessToken', token, { httpOnly: true, expires: expiryDate }).status(200).json({ success: true, data: userData })
+        res.cookie('accessToken', token, { httpOnly: true, expires: expiryDate, sameSite: 'None', secure: true }).status(200).json({ success: true, data: userData })
     } catch (error) {
         console.log('ERROR SINGIN USER', error)
         res.status(500).json({ success: false, data: 'Could not signin user'})
@@ -59,7 +59,7 @@ export async function google(req, res){
             const token = jwt.sign({ id: user._id, isAdmin: user.isAdmin }, process.env.JWT_SECRET);
             const { password: hashedPassword, ...userData } = user._doc
             const expiryDate = new Date(Date.now() + 360000)
-            res.cookie('accessToken', token, { httpOnly: true, expires: expiryDate}).status(201).json({ success: true, data: userData })
+            res.cookie('accessToken', token, { httpOnly: true, expires: expiryDate, sameSite: 'None', secure: true}).status(201).json({ success: true, data: userData })
         } else {
             const generatedPassword = Math.random().toString(36).slice(-8) + Math.random().toString(36).slice(-8)
             const hashedPassword = bcryptjs.hashSync(generatedPassword, 10);
@@ -73,7 +73,7 @@ export async function google(req, res){
             const token = jwt.sign({ id: newUser._id, isAdmin: newUser.isAdmin }, process.env.JWT_SECRET)
             const { password: hashedPassword2, adminPassword, ...userData } = newUser._doc
             const expiryDate = new Date(Date.now() + 360000)
-            res.cookie('accessToken', token, { httpOnly: true, expires: expiryDate}).status(201).json({ success: true, data: userData })
+            res.cookie('accessToken', token, { httpOnly: true, expires: expiryDate, sameSite: 'None', secure: true}).status(201).json({ success: true, data: userData })
         }
     } catch (error) {
         console.log('ERROR SINGIN USER WITH GOOGLE', error)
