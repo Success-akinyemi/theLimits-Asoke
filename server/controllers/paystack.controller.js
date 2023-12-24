@@ -3,6 +3,7 @@ import OrderModel from '../model/Order.js';
 
 export async function checkoutPayment(req, res){
     try {
+        console.log('REQ', req)
         const fullAmount = req.body.total * 100
         const email = req.body.email
     
@@ -33,7 +34,7 @@ export async function checkoutPayment(req, res){
         
         res.send({ authorizationUrl: authorization_url });
     } catch (error) {
-        console.log('UNABLE TO MAKE SHECKOUT PAYMENT', error)
+        console.log('UNABLE TO MAKE CHECKOUT PAYMENT', error)
         res.status(500).json({ success: false, data: 'Unable to create checkout payment'})
     }
 }
@@ -51,7 +52,7 @@ export async function verifyPaymentWebhook(req, res){
         await order.save()
         console.log('ORDER VERIFIED')
       } else {
-        console.log('DONATION STATUS NOT SUCCESS>>>', statusMsg)
+        console.log('PAYMENT STATUS NOT SUCCESS>>>', statusMsg)
       }
 
     } else if (event === 'charge.failed') {
@@ -97,7 +98,7 @@ export async function verifyPayment(req, res){
     }
 
   } catch (error) {
-    console.log('ERROR VERIFYING DONATION', error);
+    console.log('ERROR VERIFYING PAYMENT', error);
     res.status(500).json({ success: false, data: 'Unable To get Donation' });
   }
 }
