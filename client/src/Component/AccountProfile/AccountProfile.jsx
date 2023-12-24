@@ -6,6 +6,7 @@ import { app } from '../../firebase'
 import { deleteUserFailure, deleteUserStart, deleteUserSuccess, signOut, updateUserFailure, updateUserStart, updateUserSuccess } from '../../redux/user/userslice'
 import toast, { Toaster } from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
+import { apiUrl } from '../../Utils/api'
 
 function AccountProfile() {
     const navigate = useNavigate()
@@ -56,7 +57,7 @@ function AccountProfile() {
         e.preventDefault();
         try {
             dispatch(updateUserStart())
-            const res = await fetch(`/api/user/update/${user._id}`, {
+            const res = await fetch(apiUrl(`/api/user/update/${user._id}`), {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -87,7 +88,7 @@ function AccountProfile() {
         if(comfirmation){
             try {
                 dispatch(deleteUserStart())
-                const res = await fetch(`/api/user/delete/${user._id}`,{
+                const res = await fetch(apiUrl(`/api/user/delete/${user._id}`),{
                     method: 'DELETE',
                     credentials: 'include'
                 })
@@ -110,7 +111,7 @@ function AccountProfile() {
 
     const handleSignOut = async () => {
         try {
-            await fetch('/api/auth/signout')
+            await fetch(apiUrl('/api/auth/signout'))
             dispatch(signOut())
         } catch (error) {
             console.log(error)

@@ -42,7 +42,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api', generalRoutes)
-app.use('/api/paystack', paystackRoutes)
+app.use('/api/verifyPaymentWebhook', paystackRoutes)
 app.use('/api/user', userRoutes)
 app.use('/api/product', productRoutes)
 app.use('/api/cart', CartRoutes)
