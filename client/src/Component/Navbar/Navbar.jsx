@@ -5,6 +5,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Link } from 'react-router-dom';
 import Badge from '@mui/material/Badge';
+import AdminPanelSettingsOutlinedIcon from '@mui/icons-material/AdminPanelSettingsOutlined';
 
 function Navbar() {
     const {currentUser} = useSelector(state => state.user)
@@ -74,7 +75,10 @@ function Navbar() {
             </div>
             {
                 user?.isAdmin && (
-                    <Link className='link' to='/adminLogin' >Admin</Link>
+                    <Link className='link adminLink' to='/adminLogin' >
+                        <AdminPanelSettingsOutlinedIcon />
+                        Admin
+                    </Link>
                 )
             }
         </div>

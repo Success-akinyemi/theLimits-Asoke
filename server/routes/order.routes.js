@@ -10,8 +10,8 @@ router.post('/updateOrder/:id', verifyTokenAndAdmin, controllers.updateOrder)
 router.post('/delete/:id', verifyTokenAndAdmin, controllers.deleteOrder)
 
 //GET ROUTES
-router.get('/getOrder/:userId', verifyTokenAndAdmin, controllers.getUserOrder)
-router.get('/getAllCart', verifyTokenAndAdmin, controllers.getAllCart)
+router.get('/getOrder/:userId', verifyToken, controllers.getUserOrder)
+router.get('/getAllOrder', verifyTokenAndAdmin, controllers.getAllOrder)
 router.get('/getMonthlyIncome', verifyTokenAndAdmin, controllers.getMonthlyIncome)
 
 

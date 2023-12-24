@@ -71,6 +71,16 @@
     gap: 20px;
 }
 
+.navbar .right .adminLink{
+    display: flex;
+    align-items: center;
+    background: var(--color-1);
+    margin-right: 5px;
+    padding: 5px;
+    color: var(--text-color-2);
+    border-radius: 10px;
+}
+
 @media screen and (max-width: 768px) {
     .navbar{
         border-bottom: none;
@@ -86,19 +96,20 @@
         height: 60px;
         align-items: center;
         justify-content: space-between;
-        padding: 10px;
+        padding: 5px;
+        overflow-x: hidden;
     }
 
     .navbar .left .logo{
-        font-size: 20px;
+        font-size: 18px;
     }
 
     .navbar .left .username .p-1{
-        font-size: 14px;
+        font-size: 12px;
     }
 
     .navbar .left .username .p-2{
-        font-size: 12px;
+        font-size: 10px;
     }
 
     .navbar .right .navprofile{

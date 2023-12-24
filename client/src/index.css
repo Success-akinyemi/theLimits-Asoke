@@ -26,9 +26,18 @@
 
 .bg{
   background: var(--primary-color);
+  overflow-x: hidden;
 }
 
 .link{
   text-decoration: none;
   color: inherit;
+}
+
+.pending{
+  color: #ffbb55;
+}
+
+.delivered{
+  color: #41f1b6;
 }

@@ -57,7 +57,7 @@ export async function getUserOrder(req, res){
     }
 }
 
-export async function getAllCart(req, res){
+export async function getAllOrder(req, res){
     try {
         const orders = await OrderModel.find()
         if(!orders){
