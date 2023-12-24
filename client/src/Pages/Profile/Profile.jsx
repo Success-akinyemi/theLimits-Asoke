@@ -1,13 +1,25 @@
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import './Profile.css'
 import { useState } from 'react'
 import AccountProfile from '../../Component/AccountProfile/AccountProfile'
 import UserTransactions from '../../Component/UserTransactions/UserTransactions'
+import { apiUrl } from '../../Utils/api'
+import { signOut } from '../../redux/user/userslice'
 
 function Profile() {
   const { currentUser } = useSelector(state => state.user)
   const user = currentUser?.data
+  const dispatch = useDispatch()
   const [ menuOption, setMenuOption ] = useState('accountProfile')
+
+  const handleSignOut = async () => {
+    try {
+        await fetch(apiUrl('/api/auth/signout'))
+        dispatch(signOut())
+    } catch (error) {
+        console.log(error)
+    }
+  }
 
   const RenderMenuOption = () => {
     switch(menuOption){
@@ -36,7 +48,7 @@ function Profile() {
             <span onClick={() => setMenuOption('')} className={`links ${ menuOption === '' ? 'activeLink' : ''}`} ></span>
           </div>
 
-          <div className="logout">
+          <div onClick={handleSignOut} className="logout">
             Logout
           </div>
       </div>
