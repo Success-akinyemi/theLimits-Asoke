@@ -63,12 +63,12 @@ export async function verifyPaymentWebhook(req, res){
 }
 
 export async function verifyPayment(req, res){
-  console.log('VERIFICATION>>>', req.body)
+  //console.log('VERIFICATION>>>', req.body)
   const { reference } = req.body
 
   try {
     const verifyUrl = `https://api.paystack.co/transaction/verify/${reference}`;
-    console.log('urlll>>', verifyUrl);
+    //console.log('urlll>>', verifyUrl);
 
     const options = {
       headers: {
@@ -91,7 +91,7 @@ export async function verifyPayment(req, res){
 
       order.payment = true
       await order.save()
-      console.log('ORDER', order)
+      //console.log('ORDER', order)
 
       return  res.status(200).json({ success: true, data: 'Payment succesful'});
     } else{

@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
 import { useState } from 'react'
 import { checkoutPayment } from '../../Helpers/api'
-import { updateQuantity } from '../../redux/cart/cartSlice'
+import { removeFromCart, updateQuantity } from '../../redux/cart/cartSlice'
 import RemoveShoppingCartOutlinedIcon from '@mui/icons-material/RemoveShoppingCartOutlined';
 
 function Cart() {
@@ -36,6 +36,10 @@ function Cart() {
           dispatch(updateQuantity({ productId, quantity: newQuantity }));
         }
     };
+
+    const handleRemoveFromCart = (idx) => {
+        dispatch(removeFromCart(idx))
+    }
 
     const handleCheckout = async () => {
         const email = user.email
@@ -137,6 +141,9 @@ function Cart() {
                                         <span className="amount">
                                             NGN {item?.price * item?.quantity}
                                         </span>
+                                        <button onClick={() => handleRemoveFromCart(idx)} className='removeBtn'>
+                                            Remove from cart
+                                        </button>
                                     </div>
                                 </div>
                             ))

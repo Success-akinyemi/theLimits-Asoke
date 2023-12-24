@@ -31,10 +31,23 @@ const cartSlice = createSlice({
               // Recalculate the total based on the updated products
               state.total = state.products.reduce((acc, product) => acc + product.price * product.quantity, 0);
             }
+        },
+        removeFromCart: (state, action) => {
+            const idx = action.payload;
+            const removeProduct = state.products[idx]
+
+            state.products = state.products.filter((item, index) => index !== idx);
+            state.quantity -= removeProduct.quantity;
+            state.total -= removeProduct.price * removeProduct.quantity;
+        },
+        clearCart: (state) => {
+            state.products = [];
+            state.quantity = 0;
+            state.total = 0;
         }
     }
 })
 
-export const { addProduct, updateQuantity } = cartSlice.actions
+export const { addProduct, updateQuantity, clearCart, removeFromCart } = cartSlice.actions
 
 export default cartSlice.reducer

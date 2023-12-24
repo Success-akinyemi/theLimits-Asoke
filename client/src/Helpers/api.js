@@ -32,7 +32,7 @@ export async function checkoutPayment(formData){
         console.log('url', authorizationUrl)
         window.location.href = authorizationUrl
     } catch (error) {
-        toast.error('Failed to upload Category')
+        toast.error('Failed to Create Checkout try again')
         console.log(error)
     }
 }

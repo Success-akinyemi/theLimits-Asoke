@@ -160,6 +160,16 @@
     font-weight: 400;
 }
 
+.cart .content .body .left .price .removeBtn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    color: var(--text-color-2);
+    background: #000;
+    font-size: 14px;
+}
+
 .cart .content .body .right{
     flex: 1;
     background: var(--text-color-2);

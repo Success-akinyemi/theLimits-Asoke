@@ -4,9 +4,12 @@ import { verifyPayment } from '../../Helpers/api'
 import Spinner from '../../Admin/Component/Spinner/Spinner'
 import { useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
+import { useDispatch } from 'react-redux'
+import { clearCart } from '../../redux/cart/cartSlice'
 
 function VerifyingPayment() {
     const navigate = useNavigate()
+    const dispatch = useDispatch
 
     useEffect(() => {
         const fetchData = async () => {
@@ -18,6 +21,7 @@ function VerifyingPayment() {
                     const res = await verifyPayment({reference})
                     if(res?.data.success){
                         toast.success(res?.data.data)
+                        dispatch(clearCart())
                         navigate('/myorder')
                     } else if(!res?.data.success){
                         toast.error(res?.data.data)
