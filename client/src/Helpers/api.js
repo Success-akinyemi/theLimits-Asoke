@@ -37,9 +37,9 @@ export async function checkoutPayment(formData){
     }
 }
 
-export async function verifyPayment({}){
+export async function verifyPayment({reference}){
     try {
-        const res = await axios.post(`/api/paystack/verifyPayment`, {verifyPayment})
+        const res = await axios.post(`/api/paystack/verifyPayment`, {reference})
         return res
     } catch (error) {
         console.log(error)

@@ -63,6 +63,7 @@ export async function verifyPaymentWebhook(req, res){
 }
 
 export async function verifyPayment(req, res){
+  console.log('VERIFICATION>>>', req.body)
   const { reference } = req.body
 
   try {

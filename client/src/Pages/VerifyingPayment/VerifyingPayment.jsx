@@ -15,7 +15,7 @@ function VerifyingPayment() {
             
             if(reference){
                 try {
-                    const res = await verifyPayment({verifyPayment})
+                    const res = await verifyPayment({reference})
                     if(res?.data.success){
                         toast.success(res?.data.data)
                         navigate('/myorder')
