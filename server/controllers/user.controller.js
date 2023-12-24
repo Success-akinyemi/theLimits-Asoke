@@ -25,6 +25,7 @@ export async function updateUser(req, res){
                     profilePicture: req.body.profilePicture,
                     firstname: req.body.firstname,
                     lastname: req.body.lastname,
+                    country: req.body.country,
                     state: req.body.state,
                     lga: req.body.lga,
                     houseaddress: req.body.houseaddress,
