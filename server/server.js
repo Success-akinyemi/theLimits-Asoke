@@ -20,6 +20,7 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.setHeader('Access-Control-Allow-Credentials', true);
     next();
 });
 
@@ -42,7 +43,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api', generalRoutes)
-app.use('/api/verifyPaymentWebhook', paystackRoutes)
+app.use('/api/paystack', paystackRoutes)
 app.use('/api/user', userRoutes)
 app.use('/api/product', productRoutes)
 app.use('/api/cart', CartRoutes)
