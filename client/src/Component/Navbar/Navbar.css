@@ -102,6 +102,10 @@
 
     .navbar .left .logo{
         font-size: 18px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .navbar .left .username .p-1{
@@ -115,5 +119,15 @@
     .navbar .right .navprofile{
         width: 35px;
         height: 35px;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .navbar .left .logo{
+        font-size: 14px;
+    }
+    
+    .navbar .left .username .p-2{
+        display: none;
     }
 }
