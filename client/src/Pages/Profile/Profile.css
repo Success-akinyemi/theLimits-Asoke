@@ -6,6 +6,11 @@
     position: relative;
 }
 
+.profile .menuCard,
+.profile .close{
+    display: none;
+}
+
 .profile .sidebar{
     width: 350px;
     height: 100vh;
@@ -86,4 +91,69 @@
     width: calc(100vw - 350px);
     margin-left: auto;
     padding: 30px;
+    position: relative;
+}
+
+.profile .content .home{
+    position: absolute;
+    top: 10px;
+    right: 0;
+}
+
+.profile .content .home .homeIcon{
+    font-size: 40px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 450px) {
+    .profile .menuCard,
+    .profile .close{
+        display: block;
+
+    }
+
+    .profile .menuCard{
+        position: absolute;
+        top: 10px;
+        left: 10px;
+    }
+
+    .profile .close{
+        position: absolute;
+        top: 5px;
+        right: 10px;
+    }
+
+    .profile .menuCard .menuIcon,
+    .profile .close .closeIcon{
+        font-size: 40px;
+        cursor: pointer;
+    }
+
+    .profile .sidebar{
+        position: fixed;
+        left: -100%;
+        width: 80vw;
+        z-index: 10;
+        display: none;
+        animation: showMenu 600ms ease forwards;
+    }
+
+    .profile .sidebar .logout{
+        margin-top: auto;
+    }
+
+    @keyframes showMenu {
+        to{
+            left: 0;
+        }
+      }
+
+    .profile .sidebar.show{
+      display: block;
+    }
+
+    .profile .content{
+        width: 100vw;
+    }
 }

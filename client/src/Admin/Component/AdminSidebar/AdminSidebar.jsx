@@ -9,13 +9,27 @@ import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import AddIcon from '@mui/icons-material/Add'
 import LogoutIcon from '@mui/icons-material/Logout';
 import CategoryOutlinedIcon from '@mui/icons-material/CategoryOutlined';
+import { apiUrl } from '../../../Utils/api';
+import { signOut } from '../../../redux/user/userslice';
+import { useDispatch } from 'react-redux';
 
 function AdminSidebar() {
   const location = useLocation();
+  const dispatch = useDispatch()
 
   const isActive = (path) => {
     return location.pathname === path;
   };
+
+  const handleSignOut = async () => {
+    try {
+        await fetch(apiUrl('/api/auth/signout'))
+        dispatch(signOut())
+    } catch (error) {
+        console.log(error)
+    }
+}
+
   return (
     <div className='adminMenu'>
         <div className="top">
@@ -69,7 +83,7 @@ function AdminSidebar() {
         </div>
 
         <div className="bottom">
-          <span className='h-2'><LogoutIcon className='logoutIcon' /> Logout</span>
+          <span onClick={handleSignOut} className='h-2'><LogoutIcon className='logoutIcon' /> Logout</span>
         </div>
     </div>
   )

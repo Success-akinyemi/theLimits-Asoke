@@ -7,13 +7,20 @@ import './Orders.css'
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import { formatDistanceToNow } from 'date-fns'
 import Spinner from '../../Admin/Component/Spinner/Spinner'
+import { useNavigate } from 'react-router-dom'
 
 function Orders() {
+    const navigate = useNavigate()
     const {currentUser} = useSelector(state => state.user)
     const user = currentUser?.data
-    const { isLoadingOrder, orderData } = useFetchOrder(user._id)
+    const { isLoadingOrder, orderData, orderError } = useFetchOrder(user._id)
     const data = orderData?.data
-    console.log('ORDER', data)
+
+    const sortedData = data?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+    if(orderError){
+        navigate('/signin')
+    }
   return (
     <div className='bg orders'>
         <Navbar />
@@ -26,14 +33,14 @@ function Orders() {
                     isLoadingOrder ? (
                         <Spinner />
                     ) : (
-                        data?.length <= 0 ? (
+                        sortedData?.length <= 0 ? (
                             <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
                                 <span><LocalShippingIcon style={{fontSize: '40px'}} /></span>
                                 <p style={{fontSize: '20px', fontWeight: '700', marginBottom: '20px'}}>Your Cart is Empty</p>
                                 <span><Link to='/store' style={{background: 'purple', color: 'white', padding: '10px'}} className='link'>Continue Shopping</Link></span>
                             </div>
                         ) : (
-                            data?.map((item) => (
+                            sortedData?.map((item) => (
                                 <div key={item?._id} className="card">
                                     <small>Order ID: {item?._id}</small>
                                     <div className="top">

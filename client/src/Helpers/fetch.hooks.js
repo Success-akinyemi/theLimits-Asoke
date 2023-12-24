@@ -92,7 +92,34 @@ export function useFetchOrder(query) {
                 setOrder({ isLoadingOrder: false, orderData: null, orderStatus: status, orderError: null })
             }
         } catch (error) {
-            setOrder({ isLoadingOrder: false, orderData: null, orderStatus: null, orderError: error })
+            setOrder({ isLoadingOrder: false, orderData: null, orderStatus: null, orderError: error.response?.data?.data ? error.response?.data?.data : error })
+            console.log('CLG', order)
+        }
+    }, [query]);
+
+    useEffect(() => {
+        fetchOrderData();
+    }, [fetchOrderData]);
+
+    return order;
+}
+
+export function useFetchSpecificOrder(query) {
+    const [order, setOrder] = useState({ isLoadingOrder: true, orderData: null, orderStatus: null, orderError: null})
+
+    const fetchOrderData = useCallback(async () => {
+        try {
+
+            const { data, status } = !query ? await axios.get(`/api/order/getAllOrder`, { withCredentials: true }) : await axios.get(`/api/order/getSpecificOrder/${query}`, { withCredentials: true })
+
+            if (status === 200) {
+                setOrder({ isLoadingOrder: false, orderData: data, orderStatus: status, orderError: null })
+            } else {
+                setOrder({ isLoadingOrder: false, orderData: null, orderStatus: status, orderError: null })
+            }
+        } catch (error) {
+            setOrder({ isLoadingOrder: false, orderData: null, orderStatus: null, orderError: error.response?.data?.data ? error.response?.data?.data : error })
+            console.log('CLG', order)
         }
     }, [query]);
 

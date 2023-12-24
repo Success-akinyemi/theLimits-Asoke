@@ -6,7 +6,7 @@ axios.defaults.baseURL = import.meta.env.VITE_SERVER_API
 export async function addCategory(formData){
     try {
         console.log(formData)
-        const res = await axios.post('/api/admin/newCategory', formData)
+        const res = await axios.post('/api/admin/newCategory', formData, { withCredentials: true })
         return res
     } catch (error) {
         toast.error('Failed to upload Category')
@@ -17,11 +17,13 @@ export async function addCategory(formData){
 export async function addProduct(formData){
     try {
         console.log(formData)
-        const res = await axios.post('/api/product/createProduct', formData)
+        const res = await axios.post('/api/product/createProduct', formData, { withCredentials: true })
         return res
     } catch (error) {
         toast.error('Failed to upload Category')
         console.log(error)
+            const res = error.response.data
+            return res
     }
 }
 
@@ -43,5 +45,15 @@ export async function verifyPayment({reference}){
         return res
     } catch (error) {
         console.log(error)
+    }
+}
+
+export async function updateDeliverOrder({id}){
+    try {
+        const res = await axios.post(`/api/order/updateOrder`, {id}, { withCredentials: true })
+        return res
+    } catch (error) {
+        const res = error.response.data
+        return res
     }
 }

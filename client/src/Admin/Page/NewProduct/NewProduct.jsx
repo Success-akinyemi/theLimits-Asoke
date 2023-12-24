@@ -144,7 +144,7 @@ function NewProduct() {
                 toast.success(res?.data.data)
                 window.location.reload()
             } else{
-                toast.error(res?.data.data)
+                toast.error(res?.data)
             }
         } catch (error) {
             toast.error('Failed to upload Product')

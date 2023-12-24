@@ -15,18 +15,14 @@ export async function createOrder(req, res){
 }
 
 export async function updateOrder(req, res){
-    const { id } = req.params
+    const { id } = req.body
     console.log('UPDATE ORDER', req.body)
     try {
-        const updatedOrder = new OrderModel.findById(
-             req.params.id,
-            {
-                $set: req.body,
-            },
-            { new: true}
-        )
+        const updatedOrder = await OrderModel.findById({ _id: id })
+        updatedOrder.status = 'Delivered'
+        await updatedOrder.save()
 
-        res.status(201).json({ success: true, data: updatedOrder })
+        res.status(201).json({ success: true, data: 'Order updated succesful' })
     } catch (error) {
         console.log('ERROR UPDATING ORDER', error)
         res.status(500).json({ success: false, data: 'Could not update order'})
@@ -67,6 +63,20 @@ export async function getAllOrder(req, res){
     } catch (error) {
         console.log('ERROR GETTING ALL ORDER', error)
         res.status(500).json({ success: false, data: 'Could not get all orders'})
+    }
+}
+
+export async function getSpecificOrder(req, res){
+    try {
+        const order = await OrderModel.findById({ _id: req.params.id })
+        if(!order){
+            return res.status(404).json({ success: false, data: 'No Order Found'})
+        }
+
+        res.status(200).json({ success: true, data: order})
+    } catch (error) {
+        console.log('ERROR GETTING ORDER', error)
+        res.status(500).json({ success: false, data: 'Could not get user order'})
     }
 }
 

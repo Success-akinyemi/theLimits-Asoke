@@ -20,6 +20,7 @@ import AdminSettings from './Admin/Page/AdminSettings/AdminSettings'
 import Category from './Admin/Page/Category/Category'
 import Orders from './Pages/Orders/Orders'
 import VerifyingPayment from './Pages/VerifyingPayment/VerifyingPayment'
+import AdminOrder from './Admin/Page/AdminOrder/AdminOrder'
 
 function App() {
   return (
@@ -58,6 +59,9 @@ function App() {
           </Route>
           <Route element={<AdminRoute />} >
             <Route path='/admin-Orders' element={<AdminOrders />} />
+          </Route>
+          <Route element={<AdminRoute />} >
+            <Route path='/admin-Order/:id' element={<AdminOrder />} />
           </Route>
           <Route element={<AdminRoute />} >
             <Route path='/admin-Products' element={<AdminProducts />} />

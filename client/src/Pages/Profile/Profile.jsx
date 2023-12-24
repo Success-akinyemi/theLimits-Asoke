@@ -5,12 +5,17 @@ import AccountProfile from '../../Component/AccountProfile/AccountProfile'
 import UserTransactions from '../../Component/UserTransactions/UserTransactions'
 import { apiUrl } from '../../Utils/api'
 import { signOut } from '../../redux/user/userslice'
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
+import HomeIcon from '@mui/icons-material/Home';
+import { Link } from 'react-router-dom'
 
 function Profile() {
   const { currentUser } = useSelector(state => state.user)
   const user = currentUser?.data
   const dispatch = useDispatch()
   const [ menuOption, setMenuOption ] = useState('accountProfile')
+  const [ toggleSidebar, setToggleSidebar ] = useState(false) 
 
   const handleSignOut = async () => {
     try {
@@ -31,11 +36,19 @@ function Profile() {
       default:
         return ''
     }
+  } 
+
+  const toggle = () => {
+    setToggleSidebar((prev)=>!prev)
   }
 
+  {console.log(toggleSidebar)}
   return (
     <div className='profile'>
-      <div className="sidebar">
+      <div className={`sidebar ${toggleSidebar ? 'show' : 'hide' }`}>
+        <div className="close" onClick={toggle}>
+            <CloseIcon className='closeIcon' />
+        </div>
           <div className="top">
               <img className='profileImg' src={user.profilePicture} alt={`profile image of ${user.username}`} />
               <h2 className='username'>{user.username}</h2>
@@ -54,6 +67,14 @@ function Profile() {
       </div>
 
       <div className="content">
+        <div className="menuCard" onClick={toggle}>
+            <MenuIcon className='menuIcon' />
+        </div>
+        <div className="home">
+          <Link to='/' className='link'>
+            <HomeIcon className='homeIcon' />
+          </Link>
+        </div>
         {RenderMenuOption()}
       </div>
     </div>

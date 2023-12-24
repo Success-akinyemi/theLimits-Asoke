@@ -10,13 +10,15 @@ import { order } from '../../data/order';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import AdminAside from '../../Component/AdminAside/AdminAside';
+import { useFetchOrder } from '../../../Helpers/fetch.hooks';
 
 function AdminDashboard() {
   const [ dateValue, setDateValue ] = useState('')
   const [ dateText, setDateText ] = useState('')
-  const data = order
-  const sortedStoreData = data.sort((a, b) => new Date(b?.createdAt) - new Date(a?.createdAt));
-  const latestStoreData = sortedStoreData.slice(0, 8);
+  const { isLoadingOrder, orderData, orderError } = useFetchOrder();
+  const data = orderData?.data
+  const sortedStoreData = data?.sort((a, b) => new Date(b?.createdAt) - new Date(a?.createdAt));
+  const latestStoreData = sortedStoreData?.slice(0, 8);
 
   const handleDateChange = (e) => {
     const selectedIndex = e.target.selectedIndex;
@@ -95,8 +97,8 @@ function AdminDashboard() {
 
             <div className="newOrders">
               <h2 className="h-2">Recent Orders</h2>
-              <Orders data={latestStoreData} />
-              <Link className='link menuLink'>Show All</Link>
+              <Orders data={latestStoreData} isLoadingOrder={isLoadingOrder} orderError={orderError} />
+              <Link to='/admin-Orders' className='link menuLink'>Show All</Link>
             </div>
           </main>
         </div>
