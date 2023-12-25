@@ -31,15 +31,15 @@ function App() {
           <Route element={<PrivateRoute />}>
             <Route path='/profile' element={<Profile />} />
           </Route>
-          <Route element={<PrivateRoute />}>
+
             <Route path='/store/:category' element={<ProductCategory />} />
-          </Route>
-          <Route element={<PrivateRoute />}>
+          
+
             <Route path='/store' element={<ProductsStore />} />
-          </Route>
-          <Route element={<PrivateRoute />}>
+          
+
             <Route path='/store/product/:id' element={<Product />} />
-          </Route>
+          
           <Route element={<PrivateRoute />}>
             <Route path='/mycart' element={<Cart />} />
           </Route>

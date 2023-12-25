@@ -16,6 +16,15 @@
     margin-bottom: auto;
 }
 
+.orderContainer .errorMsg{
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--color-danger);
+}
+
 .orderContainer .o-table{
     margin-top: 4rem;
 }

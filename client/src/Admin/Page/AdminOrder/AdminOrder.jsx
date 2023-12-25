@@ -59,7 +59,7 @@ function AdminOrder() {
                 <Spinner />
               </div>
             ) : orderError ? (
-              <p>{orderError}</p>
+              <p className="errorMsg">{orderError}</p>
             ) : (
               <>
                 <div className="container">
