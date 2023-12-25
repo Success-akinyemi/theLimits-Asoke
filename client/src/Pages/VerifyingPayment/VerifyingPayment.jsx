@@ -9,7 +9,7 @@ import { clearCart } from '../../redux/cart/cartSlice'
 
 function VerifyingPayment() {
     const navigate = useNavigate()
-    const dispatch = useDispatch
+    const dispatch = useDispatch()
 
     useEffect(() => {
         const fetchData = async () => {

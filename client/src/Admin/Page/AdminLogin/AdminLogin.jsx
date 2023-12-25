@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { signInFailure, signInStart, signInSuccess } from '../../../redux/user/userslice.js'
+import { apiUrl } from '../../../Utils/api.js'
 
 function AdminLogin() {
     const {currentUser, loading, error } = useSelector(state => state.user)
@@ -16,7 +17,7 @@ function AdminLogin() {
         e.preventDefault()
         try {
             dispatch(signInStart());
-            const res = await fetch('/api/admin/adminLogin', {
+            const res = await fetch(apiUrl('/api/admin/adminLogin'), {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json'
@@ -24,7 +25,7 @@ function AdminLogin() {
               credentials: 'include',
               body: JSON.stringify({email, password})
             });
-            const data = await res.json();
+            const data = await res?.json();
             if(data?.success){
               dispatch(signInSuccess(data))
               navigate('/admin-Dashboard')
