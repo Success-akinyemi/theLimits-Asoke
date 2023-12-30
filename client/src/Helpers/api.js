@@ -11,6 +11,8 @@ export async function addCategory(formData){
     } catch (error) {
         toast.error('Failed to upload Category')
         console.log(error)
+        const res = error.response.data
+        return res
     }
 }
 
@@ -20,7 +22,20 @@ export async function addProduct(formData){
         const res = await axios.post('/api/product/createProduct', formData, { withCredentials: true })
         return res
     } catch (error) {
-        toast.error('Failed to upload Category')
+        toast.error('Failed to upload Product')
+        console.log(error)
+            const res = error.response.data
+            return res
+    }
+}
+
+export async function updateProduct(formData, id){
+    try {
+        console.log(formData)
+        const res = await axios.post(`/api/product/updateProduct/${id}`, formData, { withCredentials: true })
+        return res
+    } catch (error) {
+        toast.error('Failed to upload Product')
         console.log(error)
             const res = error.response.data
             return res
@@ -45,12 +60,24 @@ export async function verifyPayment({reference}){
         return res
     } catch (error) {
         console.log(error)
+        const res = error.response.data
+        return res
     }
 }
 
 export async function updateDeliverOrder({id}){
     try {
         const res = await axios.post(`/api/order/updateOrder`, {id}, { withCredentials: true })
+        return res
+    } catch (error) {
+        const res = error.response.data
+        return res
+    }
+}
+
+export async function deleteProduct({id}){
+    try {
+        const res = await axios.post(`/api/product/deleteProduct`, {id}, { withCredentials: true })
         return res
     } catch (error) {
         const res = error.response.data

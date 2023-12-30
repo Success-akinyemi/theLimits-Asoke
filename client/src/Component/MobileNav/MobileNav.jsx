@@ -14,7 +14,7 @@ function MobileNav() {
     const isActive = (path) => {
       return location.pathname === path;
     };
-    const quantity = useSelector(state => state.cart.quantity)
+    const cart = useSelector(state => state.cart)
     
   return (
     <div className='mobileNav'>
@@ -23,7 +23,7 @@ function MobileNav() {
             <p>Home</p>
         </Link>
         <Link className={`link moblieNavLink ${isActive('/mycart') ? 'active' : ''}`} to='/mycart'>
-            <Badge badgeContent={quantity} max={99} color='secondary'>
+            <Badge badgeContent={cart.products?.length} max={99} color='secondary'>
                 <ShoppingCartIcon />
             </Badge>
             <p>My cart</p>

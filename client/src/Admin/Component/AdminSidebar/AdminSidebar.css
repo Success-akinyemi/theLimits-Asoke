@@ -116,3 +116,64 @@
         font-size: 2rem;
     }
 }
+
+@media screen and (max-width: 768px) {
+    .adminMenu{
+        position: fixed;
+        left: -100%;
+        top: 0;
+        width: 18rem;
+        z-index: 10;
+        height: 100vh;
+        padding-right: var(--card-padding);
+        box-shadow: 1rem 3rem 4rem var(--color-light);
+    }
+
+    .adminMenu.show{
+        animation: showMenu 400ms ease forwards;
+    }
+
+    @keyframes showMenu {
+        to{
+            left: 0;
+        }
+    }
+
+    .adminMenu .top .logo{
+        font-size: 40px;
+    }
+
+    .adminMenu .menuList .menuLinks .menuLink{
+        display: inline;
+    }
+
+    .adminMenu .menuLinks{
+        height: 3.4rem;
+    }
+
+    .adminMenu .bottom{
+        margin-bottom: 7rem;
+    }
+
+    .adminMenu .top .close{
+        display: inline-block;
+        cursor: pointer;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+
+    .adminMenu .top .close .closeIcon{
+        font-size: 40px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .adminMenu .top .logo{
+        font-size: 30px;
+    }
+
+    .adminMenu .bottom{
+        margin-bottom: 2rem;
+    }
+}

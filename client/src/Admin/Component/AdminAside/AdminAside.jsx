@@ -10,7 +10,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import { Link } from 'react-router-dom';
 import AddIcon from '@mui/icons-material/Add'; 
 
-function AdminAside() {
+function AdminAside({toggleMenu}) {
     const {currentUser} = useSelector(state => state.user)
     const user = currentUser?.data
 
@@ -21,7 +21,9 @@ function AdminAside() {
   return (
     <div className='adminAside'>
         <div className="a-top">
-            <div className="menu"><MenuIcon className='menuIcon' /></div>
+            <div className="menu" onClick={toggleMenu}>
+                <MenuIcon className='menuIcon' />
+            </div>
             <div className="a-profile">
                 <div className="info">
                     <p>Hey, <b className="bold">{user?.username}</b></p>

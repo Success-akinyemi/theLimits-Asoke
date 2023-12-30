@@ -3,17 +3,17 @@ import '../../adminStyling.css'
 import AdminSidebar from '../../Component/AdminSidebar/AdminSidebar'
 import AdminAside from '../../Component/AdminAside/AdminAside'
 
-function AdminSettings() {
+function AdminSettings({toggleMenu, menuOpen}) {
   return (
     <div className='admin'>
         <div className="adminSidebar">
-          <AdminSidebar />
+          <AdminSidebar toggleMenu={toggleMenu} menuOpen={menuOpen} />
         </div>
 
         <div className="adminContainer"></div>
 
         <div className="adminAside">
-            <AdminAside />
+            <AdminAside toggleMenu={toggleMenu} />
         </div>
 
     </div>

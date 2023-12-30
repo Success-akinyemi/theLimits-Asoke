@@ -10,7 +10,7 @@ import AdminPanelSettingsOutlinedIcon from '@mui/icons-material/AdminPanelSettin
 function Navbar() {
     const {currentUser} = useSelector(state => state.user)
     const user = currentUser?.data
-    const quantity = useSelector(state => state.cart.quantity)
+    const cart = useSelector(state => state.cart)
 
     const [greeting, setGreeting] = useState('')
 
@@ -68,7 +68,7 @@ function Navbar() {
                     user ? <Link className='link' to='/profile'>My Profle</Link> : <Link className='link' to='/signin'>Signin</Link>
                 }
                 <Link to='/mycart' className='link'>
-                    <Badge badgeContent={quantity} max={99} color='secondary'>
+                    <Badge badgeContent={cart.products?.length} max={99} color='secondary'>
                         <ShoppingCartIcon />
                     </Badge>
                 </Link>

@@ -60,11 +60,12 @@
     margin-top: 1.4rem;
     background: transparent;
     gap: 1rem;
+    width: 50%;
 }
 
 .category .categoryForm .formInput > input{
     background: var(--color-white);
-    width: 50%;
+    width: 100%;
     padding: 10px;
     font-size: 1.4rem;
     border-radius: var(--border-radius-3);
@@ -150,4 +151,24 @@
 
 .category .card .info .options .optionsIcon{
     font-size: 2rem;
+}
+
+@media screen and (max-width: 768px) {
+    .category .categoryForm .formInput{
+        width: 80%;
+    }
+
+    .category .categoryForm .categoryBtn{
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .category .categoryForm .formInput{
+        width: 100%;
+    }
+
+    .category .categoryForm .categoryBtn{
+        width: 100%;
+    }
 }

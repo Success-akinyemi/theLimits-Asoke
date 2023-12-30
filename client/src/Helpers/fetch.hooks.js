@@ -42,7 +42,7 @@ export function useFetchProduct(query) {
                 setProduct({ isLoadingProduct: false, productData: null, productStatus: status, productError: null })
             }
         } catch (error) {
-            setProduct({ isLoadingProduct: false, productData: null, productStatus: null, productError: error })
+            setProduct({ isLoadingProduct: false, productData: null, productStatus: null, productError: error.response?.data?.data ? error.response?.data?.data : error })
         }
     }, [query]);
 

@@ -21,8 +21,15 @@ import Category from './Admin/Page/Category/Category'
 import Orders from './Pages/Orders/Orders'
 import VerifyingPayment from './Pages/VerifyingPayment/VerifyingPayment'
 import AdminOrder from './Admin/Page/AdminOrder/AdminOrder'
+import { useState } from 'react'
 
 function App() {
+  const [ menuOpen, setMenuOpen ] = useState(false)
+
+  const toggleMenu = () => {
+    setMenuOpen((prev) => !prev)
+  }
+
   return (
     <div className='app'>
       <Toaster position='top-center'></Toaster>
@@ -55,31 +62,31 @@ function App() {
             <Route path='/adminLogin' element={<AdminLogin />} />
           </Route>
           <Route element={<AdminRoute />} >
-            <Route path='/admin-Dashboard' element={<AdminDashboard />} />
+            <Route path='/admin-Dashboard' element={<AdminDashboard toggleMenu={toggleMenu} menuOpen={menuOpen} />} />
           </Route>
           <Route element={<AdminRoute />} >
-            <Route path='/admin-Orders' element={<AdminOrders />} />
+            <Route path='/admin-Orders' element={<AdminOrders toggleMenu={toggleMenu} menuOpen={menuOpen} />} />
           </Route>
           <Route element={<AdminRoute />} >
-            <Route path='/admin-Order/:id' element={<AdminOrder />} />
+            <Route path='/admin-Order/:id' element={<AdminOrder toggleMenu={toggleMenu} menuOpen={menuOpen} />} />
           </Route>
           <Route element={<AdminRoute />} >
-            <Route path='/admin-Products' element={<AdminProducts />} />
+            <Route path='/admin-Products' element={<AdminProducts toggleMenu={toggleMenu} menuOpen={menuOpen} />} />
           </Route>
           <Route element={<AdminRoute />} >
-            <Route path='/admin-Product/:id' element={<AdminProduct />} />
+            <Route path='/admin-Product/:id' element={<AdminProduct toggleMenu={toggleMenu} menuOpen={menuOpen} />} />
           </Route>
           <Route element={<AdminRoute />} >
-            <Route path='/admin-Customers' element={<Customers />} />
+            <Route path='/admin-Customers' element={<Customers toggleMenu={toggleMenu} menuOpen={menuOpen} />} />
           </Route>
           <Route element={<AdminRoute />} >
-            <Route path='/admin-NewProduct' element={<NewProduct />} />
+            <Route path='/admin-NewProduct' element={<NewProduct toggleMenu={toggleMenu} menuOpen={menuOpen} />} />
           </Route>
           <Route element={<AdminRoute />} >
-            <Route path='/admin-Settings' element={<AdminSettings />} />
+            <Route path='/admin-Settings' element={<AdminSettings toggleMenu={toggleMenu} menuOpen={menuOpen} />} />
           </Route>
           <Route element={<AdminRoute />} >
-            <Route path='/admin-Category' element={<Category />} />
+            <Route path='/admin-Category' element={<Category toggleMenu={toggleMenu} menuOpen={menuOpen} />} />
           </Route>
 
 

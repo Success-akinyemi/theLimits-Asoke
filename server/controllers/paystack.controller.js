@@ -1,5 +1,6 @@
 import axios from 'axios'
 import OrderModel from '../model/Order.js';
+import ProductModel from '../model/Product.js';
 
 export async function checkoutPayment(req, res){
     try {
@@ -92,6 +93,19 @@ export async function verifyPayment(req, res){
       order.payment = true
       await order.save()
       //console.log('ORDER', order)
+
+      const productUpdates = order.products.map(async(product) => {
+        const productId = product._id;
+        const quantity = product.quantity;
+
+        const updatedProduct = await ProductModel.findOne({ _id: productId })
+        if(updatedProduct){
+          updatedProduct.quantity -= quantity
+          await updatedProduct.save()
+        }
+      })
+
+      await Promise.all(productUpdates)
 
       return  res.status(200).json({ success: true, data: 'Payment succesful'});
     } else{

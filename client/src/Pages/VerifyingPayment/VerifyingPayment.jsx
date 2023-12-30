@@ -23,8 +23,8 @@ function VerifyingPayment() {
                         toast.success(res?.data.data)
                         dispatch(clearCart())
                         navigate('/myorder')
-                    } else if(!res?.data.success){
-                        toast.error(res?.data.data)
+                    } else{
+                        toast.error(res?.data)
                         navigate('/mycart')
                     }
                 } catch (error) {

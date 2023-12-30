@@ -35,8 +35,8 @@ export async function updateProduct(req, res){
 
 export async function deleteProduct(req, res){
     try {
-        await ProductModel.findByIdAndDelete(req.params.id)
-        res.status(201).json({ success: true, data: 'Product has been deleted.' })
+        await ProductModel.findByIdAndDelete({ _id: req.body.id })
+        res.status(201).json({ success: true, data: 'Product deleted successful.' })
     } catch (error) {
         console.log('ERROR DELETING PRODUCT', error)
         res.status(500).json({ success: false, data: 'Could not delete product'})

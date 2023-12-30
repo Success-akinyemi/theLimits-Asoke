@@ -8,12 +8,14 @@ import { Link } from 'react-router-dom';
 import { useFetchProduct } from '../../../Helpers/fetch.hooks';
 import Spinner from '../../Component/Spinner/Spinner';
 import { useState } from 'react';
+import { deleteProduct } from '../../../Helpers/api';
+import toast from 'react-hot-toast';
 
-function AdminProducts() {
+function AdminProducts({toggleMenu, menuOpen}) {
   const { isLoadingProduct, productData  } = useFetchProduct();
   const data = productData?.data
   const [selectedSortOption, setSelectedSortOption] = useState('');
-  console.log('PP', data)
+  const [ loading, setLoading ] = useState(false)
 
   const handleSortChange = (e) => {
     setSelectedSortOption(e.target.value);
@@ -29,14 +31,47 @@ function AdminProducts() {
     return true;
   });
 
+  const handleDeleteProduct = async (id) => {
+    const confirm = window.confirm('Are you sure you want to delete this Product?')
+    if(confirm){
+      if(!id){
+        toast.error('Invalid product selected')
+        return;
+      }
+      try {
+        setLoading(true)
+        const res = await deleteProduct({id})
+        console.log('res', res)
+        if(res?.data.success){
+          toast.success(res?.data.data)
+          window.location.reload()
+        } else{
+          toast.error(res?.data)
+        }
+      } catch (error) {
+        toast.error('Failed to delete product')
+        console.log(error)
+      } finally {
+        setLoading(false)
+      }
+    }
+  }
+
   return (
     <div className='admin'>
         <div className="adminSidebar">
-          <AdminSidebar />
+          <AdminSidebar toggleMenu={toggleMenu} menuOpen={menuOpen} />
         </div>
 
         <div className="adminContainer">
           <div className="adminProducts">
+            {
+              loading && (
+              <div className="loading">
+                <Spinner />
+              </div>
+              )
+            }
             <h1 className="h-1">All Products</h1>
             
             <div className="sort">
@@ -64,11 +99,11 @@ function AdminProducts() {
                             <h4 className="h-4">NGN {item.price.toLocaleString()}</h4>
                           </div>
                           <div className="bottom">
-                              <span><DeleteOutlinedIcon className='pIcon' /></span>
+                              <span onClick={() => handleDeleteProduct(item?._id)}><DeleteOutlinedIcon className='pIcon' /></span>
                               <span><Link to={`/admin-Product/${item?._id}`}><EditOutlinedIcon className='pIconTwo' /></Link></span>
                           </div>
                           <div className={`foot ${item?.quantity > 0 ? 'one' : 'two'}`}>
-                              {item?.quantity > 0 ? 'Availble in Stock' : 'Out of Stock'}
+                              {item?.quantity > 0 ? `Availble in Stock (${item?.quantity})` : 'Out of Stock'}
                           </div>
                         </div>
                       </div>
@@ -80,7 +115,7 @@ function AdminProducts() {
         </div>
 
         <div className="adminAside">
-          <AdminAside />
+          <AdminAside toggleMenu={toggleMenu} />
         </div>
 
     </div>

@@ -125,3 +125,35 @@
 .adminAside .sales-analytics .add-product .div h3{
     font-weight: 600;
 }
+
+@media screen and (max-width: 768px) {
+    .adminAside .a-top{
+        position: fixed;
+        width: 100vw;
+        top: 0;
+        left: 0;
+        background: var(--color-white);
+        padding: 0 0.8rem;
+        height: 4.6rem;
+        margin: 0;
+        z-index: 6;
+        box-shadow: 0 1rem 1rem var(--color-light);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .adminAside .menu{
+        display: block;
+        cursor: pointer;
+    }
+
+    .adminAside .menu .menuIcon{
+        font-size: 40px;
+    }
+
+    .adminAside .recentUpdates,
+    .adminAside .sales-analytics{
+        display: none;
+    }
+}

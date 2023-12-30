@@ -13,7 +13,7 @@ import { apiUrl } from '../../../Utils/api';
 import { signOut } from '../../../redux/user/userslice';
 import { useDispatch } from 'react-redux';
 
-function AdminSidebar() {
+function AdminSidebar({toggleMenu, menuOpen}) {
   const location = useLocation();
   const dispatch = useDispatch()
 
@@ -31,12 +31,12 @@ function AdminSidebar() {
 }
 
   return (
-    <div className='adminMenu'>
+    <div className={`adminMenu ${menuOpen ? 'show' : 'hide'}`}>
         <div className="top">
           <div className="logo">
                 <Link className='link'>theLimits Asoke</Link>
           </div>
-          <div className="close">
+          <div className="close" onClick={toggleMenu}>
             <CloseIcon className='closeIcon' />
           </div>
         </div>

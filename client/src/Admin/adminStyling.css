@@ -126,3 +126,17 @@
         overflow-x: hidden;
     }
 }
+
+@media screen and (max-width: 768px) {
+    .adminContainer{
+        width: 100vw;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        margin-top: 4rem;
+    }
+
+    .adminSidebar{
+        position: absolute;
+    }
+
+}

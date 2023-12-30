@@ -9,7 +9,7 @@ import toast from "react-hot-toast";
 import { useState } from "react";
 import { updateDeliverOrder } from "../../../Helpers/api";
 
-function AdminOrder() {
+function AdminOrder({toggleMenu, menuOpen}) {
   const loc = useLocation();
   const path = loc.pathname.split("/")[2];
   const { isLoadingOrder, orderData, orderError } = useFetchSpecificOrder(path);
@@ -45,7 +45,7 @@ function AdminOrder() {
   return (
     <div className="admin">
       <div className="adminSidebar">
-        <AdminSidebar />
+        <AdminSidebar toggleMenu={toggleMenu} menuOpen={menuOpen} />
       </div>
 
       <div className="adminContainer">
@@ -157,7 +157,7 @@ function AdminOrder() {
       </div>
 
       <div className="adminAside">
-        <AdminAside />
+        <AdminAside toggleMenu={toggleMenu} />
       </div>
     </div>
   );

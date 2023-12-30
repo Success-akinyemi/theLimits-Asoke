@@ -6,8 +6,8 @@ const router = express.Router()
 
 //POST ROUTES
 router.post('/createProduct', verifyTokenAndAdmin, controllers.createProduct)
-router.post('/updateProduct', verifyTokenAndAdmin, controllers.updateProduct)
-router.post('/deleteProduct/:id', verifyTokenAndAdmin, controllers.deleteProduct)
+router.post('/updateProduct/:id', verifyTokenAndAdmin, controllers.updateProduct)
+router.post('/deleteProduct', verifyTokenAndAdmin, controllers.deleteProduct)
 router.post('/setDiscount/:id', verifyTokenAndAdmin, controllers.setDiscount)
 
 

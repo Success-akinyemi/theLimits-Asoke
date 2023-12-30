@@ -12,7 +12,7 @@ import { useState } from 'react';
 import AdminAside from '../../Component/AdminAside/AdminAside';
 import { useFetchOrder } from '../../../Helpers/fetch.hooks';
 
-function AdminDashboard() {
+function AdminDashboard({toggleMenu, menuOpen}) {
   const [ dateValue, setDateValue ] = useState('')
   const [ dateText, setDateText ] = useState('')
   const { isLoadingOrder, orderData, orderError } = useFetchOrder();
@@ -28,10 +28,11 @@ function AdminDashboard() {
     setDateText(selectedOption.text);
   };
 
+
   return (
     <div className='admin'>
         <div className="adminSidebar">
-          <AdminSidebar />
+          <AdminSidebar toggleMenu={toggleMenu} menuOpen={menuOpen} />
         </div>
 
         <div className="adminContainer">
@@ -104,7 +105,7 @@ function AdminDashboard() {
         </div>
 
         <div className="adminAside">
-          <AdminAside />
+          <AdminAside toggleMenu={toggleMenu} />
         </div>
 
     </div>

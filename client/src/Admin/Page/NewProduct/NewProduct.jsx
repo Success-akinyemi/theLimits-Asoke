@@ -12,7 +12,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import toast from 'react-hot-toast';
 import { addProduct } from '../../../Helpers/api';
 
-function NewProduct() {
+function NewProduct({toggleMenu, menuOpen}) {
     const [ formData, setFormData ] = useState({})
     const [ image, setImage ] =  useState(undefined)
     const [ imageUploadProgress, setImageUploadProgress ] = useState(0)
@@ -157,7 +157,7 @@ function NewProduct() {
   return (
     <div className='admin'>
         <div className="adminSidebar">
-          <AdminSidebar />
+          <AdminSidebar toggleMenu={toggleMenu} menuOpen={menuOpen} />
         </div>
 
         <div className="adminContainer">
@@ -272,7 +272,7 @@ function NewProduct() {
         </div>
 
         <div className="adminAside">
-            <AdminAside />
+            <AdminAside toggleMenu={toggleMenu} />
         </div>
 
     </div>

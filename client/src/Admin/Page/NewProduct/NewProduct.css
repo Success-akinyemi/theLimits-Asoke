@@ -190,4 +190,8 @@
     .newProduct .newProductForm .formInputs > input{
         width: 100%;
     }
+
+    .newProduct .newProductForm  .submit{
+        width: 100%;
+    }
 }

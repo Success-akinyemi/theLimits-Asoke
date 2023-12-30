@@ -14,7 +14,7 @@ import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import { useFetchCategory } from '../../../Helpers/fetch.hooks'
 import Spinner from '../../Component/Spinner/Spinner'
 
-function Category() {
+function Category({toggleMenu, menuOpen}) {
     const [ formData, setFormData ] = useState({})
     const [ image, setImage ] =  useState(undefined)
     const [ imageUploadProgress, setImageUploadProgress ] = useState(0)
@@ -77,7 +77,7 @@ function Category() {
                 toast.success(res?.data.data)
                 window.location.reload()
             } else(
-                toast.error(res?.data.data)
+                toast.error(res?.data)
             )
         } catch (error) {
             toast.error('Failed to upload Category')
@@ -90,7 +90,7 @@ function Category() {
   return (
     <div className='admin'>
         <div className="adminSidebar">
-          <AdminSidebar />
+          <AdminSidebar toggleMenu={toggleMenu} menuOpen={menuOpen} />
         </div>
 
         <div className="adminContainer">
@@ -172,7 +172,7 @@ function Category() {
         </div>
 
         <div className="adminAside">
-            <AdminAside />
+            <AdminAside toggleMenu={toggleMenu} />
         </div>
 
     </div>

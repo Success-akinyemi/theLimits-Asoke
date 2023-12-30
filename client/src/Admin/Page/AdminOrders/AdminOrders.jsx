@@ -8,7 +8,7 @@ import { useState } from 'react'
 import Orders from '../../Component/Orders/Orders'
 
 
-function AdminOrders() {
+function AdminOrders({toggleMenu, menuOpen}) {
   const { isLoadingOrder, orderData, orderError } = useFetchOrder();
   const data = orderData?.data
   const sortedStoreData = data?.sort((a, b) => new Date(b?.createdAt) - new Date(a?.createdAt));
@@ -39,7 +39,7 @@ console.log(sortedStoreData)
   return (
     <div className='admin'>
         <div className="adminSidebar">
-          <AdminSidebar />
+          <AdminSidebar toggleMenu={toggleMenu} menuOpen={menuOpen} />
         </div>
 
         <div className="adminContainer">
@@ -94,7 +94,7 @@ console.log(sortedStoreData)
         </div>
 
         <div className="adminAside">
-          <AdminAside />
+          <AdminAside toggleMenu={toggleMenu} />
         </div>
 
     </div>
