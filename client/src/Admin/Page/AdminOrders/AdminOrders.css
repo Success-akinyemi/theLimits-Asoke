@@ -90,3 +90,9 @@
 .orderContainer .pagination button.btn1{
     background: var(--color-light);
 }
+
+@media screen and (max-width: 768px) {
+    .orderContainer{
+        margin-bottom: 3rem;
+    }
+}

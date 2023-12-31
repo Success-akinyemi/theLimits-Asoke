@@ -45,3 +45,21 @@
         display: none;
     }
 }
+
+@media screen and (max-width: 450px) {
+    .orderstable thead tr th:nth-child(4){
+        display: none;
+    }
+
+    .orderstable tbody tr td:nth-child(4){
+        display: none;
+    }
+
+    .orderstable thead tr th:nth-child(5){
+        display: none;
+    }
+
+    .orderstable tbody tr td:nth-child(5){
+        display: none;
+    }
+}
