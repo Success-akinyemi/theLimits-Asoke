@@ -16,15 +16,17 @@ function ProductItem({data}) {
             <div className="top">{data?.name}</div>
             <div className="bottom">
                 <span className='left'>
-                    {
-                        data?.isDiscountAllowed ? (
-                            <div className='discountBox'>
-                                <p className='discountPrice' >NGN {formattedPrice}</p>
-                                <p className='originalPrice'>NGN {data?.price.toLocaleString()}</p>
-                            </div>
-                        ) : (
-                            <>NGN {formattedPrice}</>
-                        )
+                    {/**
+                     * 
+                     data?.isDiscountAllowed ? (
+                         <div className='discountBox'>
+                             <p className='discountPrice' >NGN {formattedPrice}</p>
+                             <p className='originalPrice'>NGN {data?.price.toLocaleString()}</p>
+                         </div>
+                     ) : (
+                         <>NGN {formattedPrice}</>
+                     )
+                     */
                     }
                     <FavoriteBorderOutlined className='icon' />
                 </span>

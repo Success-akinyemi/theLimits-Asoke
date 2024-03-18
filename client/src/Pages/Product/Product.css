@@ -228,4 +228,12 @@
     .product .content{
         flex-direction: column;
     }
+
+    .product .content .right{
+        width: 100vw;
+    }
+
+    .product .content .right .btn{
+        width: 100%;
+    }
 }

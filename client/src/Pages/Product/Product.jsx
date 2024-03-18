@@ -114,6 +114,8 @@ function Product() {
                 <h1 className='productName'>{data?.name}</h1>
                 <p className="productDesc">{data?.desc}</p>
                 <p className="productPrice">{
+                    /**
+                     * 
                     data?.isDiscountAllowed ? (
                         <div className='discountBox'>
                             <p className='discountPrice' >NGN {formattedPrice}</p>
@@ -122,6 +124,7 @@ function Product() {
                     ) : (
                         <p>NGN {formattedPrice}</p>
                     )
+                     */
                 }</p>
                 <div className="colors">
                     <p className="productColors">Select from Available colors:</p>

@@ -60,7 +60,10 @@ function Categories({data, isLoadingCat}) {
 
   return (
     <div className='categories'>
-        <div className="tag">Our Categories</div>
+      {/**
+       * 
+      <div className="tag">Our Categories</div>
+      */}
         <div className="content">
           <div className="body">
             <Slider {...settings}>

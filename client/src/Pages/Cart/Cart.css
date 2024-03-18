@@ -172,7 +172,9 @@
 
 .cart .content .body .right{
     flex: 1;
+    /*
     background: var(--text-color-2);
+    */
     height: 920px;
     border-radius: 50px;
     padding: 20px;

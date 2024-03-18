@@ -75,6 +75,7 @@
 .productItem .info .bottom .left .icon{
     cursor: pointer;
     transition: all 0.3s ease-in-out;
+    margin-left: auto;
 }
 
 .productItem .info .bottom .left .icon:hover{

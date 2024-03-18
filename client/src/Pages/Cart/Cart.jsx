@@ -20,10 +20,18 @@ function Cart() {
     const dispatch = useDispatch();
     const [ loading, setLoading ] = useState(false)
     const [ formData, setFormData ] = useState({})
-    console.log('CART',cart)
-    console.log('user', user.email)
+    console.log('CART',cart.products)
+    //console.log('user', user.email)
 
-
+    //filter data from products
+    const filteredData = cart.products.map(item => ({
+        category: item.category,
+        color: item.color,
+        size: item.size,
+        name: item.name,
+        quantity: item.quantity,
+        img: item.img
+    }));
 
     const handleQuantity = (type, productId) => {
         const productIndex = cart.products.findIndex((item) => item._id === productId);
@@ -41,13 +49,15 @@ function Cart() {
         dispatch(removeFromCart(idx))
     }
 
+    /**
+     * 
     const handleCheckout = async () => {
         const email = user.email
         const amount = cart.total
-        if(!user.country || !user.state || !user.lga || !user.houseaddress || !user.phonenumber){
-            toast.error('Add Shipping Information')
-            return;
-        }
+        //if(!user.country || !user.state || !user.lga || !user.houseaddress || !user.phonenumber){
+        //    toast.error('Add Shipping Information')
+        //    return;
+        //}
         if(cart.total <= 0 || cart.products.length === 0){
             toast.error('Cart cannot be empty')
             return;
@@ -63,6 +73,27 @@ function Cart() {
             setLoading(false)
         }
     }
+     */
+
+    const handleCheckout = () => {
+        const whatsappNumber = '+2348115397098'; 
+        const message = `Hello, I am interested in purchasing the following items: \n`;
+    
+        const productDetails = filteredData.map(item => {
+            return `Product: ${item.name}\nCategory: ${item.category}\nColor: ${item.color.join(", ")}\nSize: ${item.size.join(", ")}\nQuantity: ${item.quantity}\n\n`;
+        }).join("");
+    
+
+        const encodedMessage = encodeURIComponent(`${message}${productDetails}`);
+    
+
+        const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+    
+        // Redirect the user to WhatsApp
+        window.location.href = whatsappUrl;
+    };
+
+    
 
   return (
     <div className='bg cart'>
@@ -138,9 +169,12 @@ function Cart() {
                                                 <button onClick={() => handleQuantity('inc', item?._id)} className='qbtn'><AddIcon className='icon' /></button>
                                             </div>
                                         </div>
+                                        {/**
+                                         * 
                                         <span className="amount">
                                             NGN {item?.price * item?.quantity}
                                         </span>
+                                         */}
                                         <button onClick={() => handleRemoveFromCart(idx)} className='removeBtn'>
                                             Remove from cart
                                         </button>
@@ -152,46 +186,51 @@ function Cart() {
                 </div>
 
                 <div className="right">
-                    <h1>ORDER SUMMARY</h1>
+                    {
+                        /**
+                         <h1>ORDER SUMMARY</h1>
+     
+                         <div className="total">
+                             <span>SubTotal: <p>NGN {cart.total.toLocaleString()}</p></span>
+                             <span>Shipping fee: <p>NGN 0</p></span>
+                             <span>Transaction fee: <p>NGN 0</p></span>
+                             <span>Discount: <p>NGN 0</p></span>
+     
+                         </div>
+     
+                         <div className="total">
+                             <h1>Shipping Information</h1>
+                             {
+                                 !user.country || !user.state || !user.lga || !user.houseaddress || !user.phonenumber ? (
+                                     <div className="updateInfo">
+                                         <h2>Add Shipping Information</h2>
+                                         <Link to='/profile' className='link updateBtn'>UPADATE HERE</Link>
+                                     </div>
+                                 ) : (
+                                     <>
+                                         <span>Country: <p>{user?.country}</p></span>
+                                         <span>State: <p>{user?.state}</p></span>
+                                         <span>Local Government Area: <p>{user.lga}</p></span>
+                                         <span>House Address: <p>{user.houseaddress}</p></span>
+                                         <span>Phone Number: <p>{user.phonenumber}</p></span>
+     
+                                         <div className="updateInfo">
+                                             <h2>Upadate Shipping Information?</h2>
+                                             <Link to='/profile' className='link updateBtn'>UPADATE HERE</Link>
+                                         </div>
+                                     </>
+                                 )
+                             }
+                         </div>
+     
+                         <div className="totalfee">
+                             <span>Total: <p>NGN {cart.total.toLocaleString()}</p></span>
+                         </div>
+                         * 
+                         */
+                    }
 
-                    <div className="total">
-                        <span>SubTotal: <p>NGN {cart.total.toLocaleString()}</p></span>
-                        <span>Shipping fee: <p>NGN 0</p></span>
-                        <span>Transaction fee: <p>NGN 0</p></span>
-                        <span>Discount: <p>NGN 0</p></span>
-
-                    </div>
-
-                    <div className="total">
-                        <h1>Shipping Information</h1>
-                        {
-                            !user.country || !user.state || !user.lga || !user.houseaddress || !user.phonenumber ? (
-                                <div className="updateInfo">
-                                    <h2>Add Shipping Information</h2>
-                                    <Link to='/profile' className='link updateBtn'>UPADATE HERE</Link>
-                                </div>
-                            ) : (
-                                <>
-                                    <span>Country: <p>{user?.country}</p></span>
-                                    <span>State: <p>{user?.state}</p></span>
-                                    <span>Local Government Area: <p>{user.lga}</p></span>
-                                    <span>House Address: <p>{user.houseaddress}</p></span>
-                                    <span>Phone Number: <p>{user.phonenumber}</p></span>
-
-                                    <div className="updateInfo">
-                                        <h2>Upadate Shipping Information?</h2>
-                                        <Link to='/profile' className='link updateBtn'>UPADATE HERE</Link>
-                                    </div>
-                                </>
-                            )
-                        }
-                    </div>
-
-                    <div className="totalfee">
-                        <span>Total: <p>NGN {cart.total.toLocaleString()}</p></span>
-                    </div>
-
-                    <button onClick={handleCheckout} className='checkoutBtn'>{loading ? 'Procesing...' : 'Checkout now'}</button>
+                    <button onClick={handleCheckout} className='checkoutBtn'>{loading ? 'Procesing...' : 'Proceed'}</button>
                 </div>
             </div>
         </div>
