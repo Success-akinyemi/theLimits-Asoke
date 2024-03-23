@@ -79,7 +79,11 @@ function Categories({data, isLoadingCat}) {
                     <Link className='link btn' to={`/store/${item?.cat}`}>
                       Explore
                     </Link>
-                    <p className='name'>{item?.name}</p>
+                    {/**
+                     * 
+                     <p className='name'>{item?.name}</p>
+                     *
+                    */}
                   </div>
                 ))
               )
