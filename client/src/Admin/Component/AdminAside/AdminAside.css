@@ -127,6 +127,11 @@
 }
 
 @media screen and (max-width: 768px) {
+    .adminAside{
+        z-index: 200;
+        height: 3.4rem;
+    }
+
     .adminAside .a-top{
         position: fixed;
         width: 100vw;

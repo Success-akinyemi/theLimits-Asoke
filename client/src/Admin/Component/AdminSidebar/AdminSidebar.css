@@ -9,6 +9,7 @@
     padding-left: 5px;
     padding-right: 5px;
     background: var(--color-white);
+    overflow-y: auto;
 }
 
 .adminMenu .top{
@@ -131,6 +132,7 @@
 
     .adminMenu.show{
         animation: showMenu 400ms ease forwards;
+        z-index: 900;
     }
 
     @keyframes showMenu {

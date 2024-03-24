@@ -42,39 +42,39 @@ function AdminSidebar({toggleMenu, menuOpen}) {
         </div>
 
         <div className="menuList">
-          <Link to='/admin-Dashboard' className={`h-2 menuLinks ${isActive('/admin-Dashboard') ? 'active' : ''}`}>
+          <Link to='/admin-Dashboard' onClick={toggleMenu} className={`h-2 menuLinks ${isActive('/admin-Dashboard') ? 'active' : ''}`}>
             <DashboardIcon className='menuLinks-icon' />
             <Link to='/admin-Dashboard' className='link menuLink'>Dashboard</Link>
           </Link>
 
-          <Link to='/admin-Orders' className={`h-2 menuLinks ${isActive('/admin-Orders') ? 'active' : ''}`}>
+          <Link to='/admin-Orders' onClick={toggleMenu} className={`h-2 menuLinks ${isActive('/admin-Orders') ? 'active' : ''}`}>
             <AssignmentIcon className='menuLinks-icon' />
             <Link to='/admin-Orders' className='link menuLink'>Orders</Link>
           </Link>
 
-          <Link to='/admin-Products' className={`h-2 menuLinks ${isActive('/admin-Products') ? 'active' : ''} `}>
+          <Link to='/admin-Products' onClick={toggleMenu} className={`h-2 menuLinks ${isActive('/admin-Products') ? 'active' : ''} `}>
             <InventoryIcon className='menuLinks-icon' />
             <Link to='/admin-Products' className='link menuLink'>Products</Link>
           </Link>
 
-          <Link to='/admin-Customers' className={`h-2 menuLinks ${isActive('/admin-Customers') ? 'active' : ''}`}>
+          <Link to='/admin-Customers' onClick={toggleMenu}  className={`h-2 menuLinks ${isActive('/admin-Customers') ? 'active' : ''}`}>
             <PeopleIcon className='menuLinks-icon' />
             <Link to='/admin-Customers' className='link menuLink'>Customers</Link>
           </Link>
 
-          <Link to='/admin-Settings' className={`h-2 menuLinks ${isActive('/admin-Settings') ? 'active' : ''}`}>
+          <Link to='/admin-Settings' onClick={toggleMenu} className={`h-2 menuLinks ${isActive('/admin-Settings') ? 'active' : ''}`}>
             <SettingsRoundedIcon className='menuLinks-icon' />
             <Link to='/admin-Settings' className='link menuLink'>Settings</Link>
           </Link>
 
-          <Link to='/admin-Category' className={`h-2 menuLinks ${isActive('/admin-Category') ? 'active' : ''}`}>
+          <Link to='/admin-Category' onClick={toggleMenu} className={`h-2 menuLinks ${isActive('/admin-Category') ? 'active' : ''}`}>
             <CategoryOutlinedIcon className='menuLinks-icon' />
             <Link to='/admin-Category' className='link menuLink'>
               Category
             </Link>
           </Link>
 
-          <Link to='/admin-NewProduct' className={`h-2 menuLinks ${isActive('/admin-NewProduct') ? 'active' : ''}`}>
+          <Link to='/admin-NewProduct' onClick={toggleMenu} className={`h-2 menuLinks ${isActive('/admin-NewProduct') ? 'active' : ''}`}>
             <AddIcon className='menuLinks-icon' />
             <Link to='/admin-NewProduct' className='link menuLink'>
               Add Product

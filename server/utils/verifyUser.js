@@ -15,7 +15,7 @@ export const verifyToken = (req, res, next) => {
 }
 
 export const verifyAdminToken = (req, res, next) => {
-    const token = req.cookies.adminAccessToken
+    const token = req.cookies.accessToken
     console.log('ADMIN TOK',token)
 
     if(!token) return res.status(401).json({ success: false, data: 'Not Allowed Please Login'})
