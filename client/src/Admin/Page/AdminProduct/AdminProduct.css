@@ -248,3 +248,21 @@
     font-weight: 700;
     font-size: 1.5rem;
 }
+
+@media screen and (max-width: 768px) {
+    .product{
+        width: 100%;
+    }
+
+    .product h1{
+        margin-bottom: 2rem;
+        width: 100%;
+    }
+    .product .content{
+        width: 100%;
+    }
+
+    .product .content .img{
+        width: 80%;
+    }
+}
