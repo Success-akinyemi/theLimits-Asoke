@@ -18,7 +18,7 @@ export async function updateProduct(req, res){
     const { id } = req.params
     console.log('UPDATE PRODUCT', req.body)
     try {
-        const updatedProduct = new ProductModel.findById(
+        const updatedProduct = await ProductModel.findByIdAndUpdate(
              req.params.id,
             {
                 $set: req.body,

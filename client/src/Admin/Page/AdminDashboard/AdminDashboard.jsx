@@ -10,11 +10,15 @@ import { order } from '../../data/order';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import AdminAside from '../../Component/AdminAside/AdminAside';
-import { useFetchOrder } from '../../../Helpers/fetch.hooks';
+import { useFetchCategory, useFetchOrder, useFetchProduct } from '../../../Helpers/fetch.hooks';
 
 function AdminDashboard({toggleMenu, menuOpen}) {
   const [ dateValue, setDateValue ] = useState('')
   const [ dateText, setDateText ] = useState('')
+  const { isLoadingProduct, productData  } = useFetchProduct();
+  const productDataInfo = productData?.data
+  const { isLoadingCat, catData } = useFetchCategory()
+  const Categorydata = catData?.data
   const { isLoadingOrder, orderData, orderError } = useFetchOrder();
   const data = orderData?.data
   const sortedStoreData = data?.sort((a, b) => new Date(b?.createdAt) - new Date(a?.createdAt));
@@ -55,8 +59,8 @@ function AdminDashboard({toggleMenu, menuOpen}) {
                   <span className="a-iconBox"><AnalyticsIcon className='a-icon' /></span>
                   <div className="middle">
                     <div className="left">
-                      <h3 className="h-3">Total Sales</h3>
-                      <h1 className="h-1">30</h1>
+                      <h3 className="h-3">Total Product</h3>
+                      <h1 className="h-1">{productDataInfo?.length}</h1>
                     </div>
                     <div className="progress">
 
@@ -85,8 +89,8 @@ function AdminDashboard({toggleMenu, menuOpen}) {
                   <span className="a-iconBox"><PendingIcon className='a-icon' /></span>
                   <div className="middle">
                     <div className="left">
-                      <h3 className="h-3">Total Pending</h3>
-                      <h1 className="h-1">10</h1>
+                      <h3 className="h-3">Total Category</h3>
+                      <h1 className="h-1">{Categorydata?.length}</h1>
                     </div>
                     <div className="progress">
 

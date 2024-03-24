@@ -9,7 +9,7 @@
     padding-left: 5px;
     padding-right: 5px;
     background: var(--color-white);
-    overflow-y: auto;
+    overflow-y: scroll;
 }
 
 .adminMenu .top{
@@ -128,6 +128,7 @@
         height: 100vh;
         padding-right: var(--card-padding);
         box-shadow: 1rem 3rem 4rem var(--color-light);
+        overflow-y: scroll;
     }
 
     .adminMenu.show{
