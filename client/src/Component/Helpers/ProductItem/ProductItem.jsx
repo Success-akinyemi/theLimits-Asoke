@@ -5,7 +5,7 @@ import FavoriteBorderOutlined from '@mui/icons-material/FavoriteBorderOutlined'
 
 function ProductItem({data}) {
 
-    const formattedPrice = data?.isDiscountAllowed ? data?.discountPrice.toLocaleString() : data?.price.toLocaleString() ;
+    const formattedPrice = data?.isDiscountAllowed ? data?.discountPrice?.toLocaleString() : data?.price?.toLocaleString() ;
 
   return (
     <div className='productItem' key={data?._id}>
