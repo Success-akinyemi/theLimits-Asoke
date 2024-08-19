@@ -15,7 +15,8 @@ import cors from 'cors'
 import schedule from 'node-schedule'
 import axios from "axios";
 
-import UserModel './model/User.js'
+import UserModel from './model/User.js'
+
 
 const app = express()
 app.use(express.json())
