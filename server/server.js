@@ -12,12 +12,27 @@ import paystackRoutes from './routes/paystack.routes.js'
 
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
+import schedule from 'node-schedule'
+import axios from "axios";
+
+import UserModel './model/User.js'
 
 const app = express()
 app.use(express.json())
 app.use(cookieParser())
+const allowedOrigins = [
+    process.env.CLIENT_URL,
+    process.env.NEBOUR_URL,
+    process.env.CLIENT_URL2,
+    process.env.CLIENT_URL3
+];
 app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    const origin = req.headers.origin;
+    console.log('ORIGIN', origin)
+
+    if (allowedOrigins.includes(origin)) {
+      res.header('Access-Control-Allow-Origin', origin);
+    }
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     res.setHeader('Access-Control-Allow-Credentials', true);
@@ -25,7 +40,13 @@ app.use((req, res, next) => {
 });
 
 const corsOptions = {
-    origin: `${process.env.CLIENT_URL}`,
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+          callback(null, true);
+        } else {
+          callback(new Error('Not allowed by CORS'));
+        }
+      },    
     credentials: true,
 };
 
@@ -51,6 +72,23 @@ app.use('/api/order', OrderRoutes)
 app.use('/api/admin', adminRoutes)
 app.use('/api/auth', authRoutes)
 
+app.get('/keep-alive', async (req, res) => {
+    const user = await UserModel.find()
+  
+    console.log('Total number of bookings.', user.length);
+    res.status(201).json(`Keep alive Request fun: ${user.length}`)
+  })
+
+//CORN-JOB
+const sendMessage = async () => {
+    const res = await axios.get(`${process.env.NEBOUR_URL}/keep-alive`)
+
+    console.log('ALIVE RESPONSE', res.data)
+
+}
+const job = schedule.scheduleJob('*/3 * * * *', () => {
+    sendMessage();
+});
 
 app.listen(PORT, () => {
     console.log(`Server runing on port http://localhost:${PORT}`)
